@@ -1,0 +1,12 @@
+library fake_store_api_client;
+export 'src/api/cart_handler.dart';
+export 'src/api/product_handler.dart';
+export 'src/api/user_handler.dart';
+export 'src/domain/cart/model/cart.dart' hide Product;
+export 'src/domain/cart/model/cart_request.dart';
+export 'src/domain/product/model/product.dart';
+export 'src/domain/product/model/product_request.dart';
+export 'src/domain/user/model/user.dart';
+export 'src/domain/user/model/user_request.dart';
+export 'src/core/failure.dart';
+export 'src/fake_store_api_client.dart';
