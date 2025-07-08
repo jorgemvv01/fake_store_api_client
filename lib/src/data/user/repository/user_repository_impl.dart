@@ -20,7 +20,7 @@ class UserRepositoryImpl implements UserRepository {
       }
       return Left(ServerFailure('Server error: ${response.statusCode}'));
     } on DioException {
-      return Left(NetworkFailure());
+      return const Left(NetworkFailure());
     } catch (e) {
       return Left(ServerFailure('An error has occurred: $e'));
     }
