@@ -1,39 +1,48 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Fake store API client
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A package for the Fake Store API.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+---
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## Getting Started
 
-## Features
+To use this package in your Flutter project, add it as a git dependency in your `pubspec.yaml` file.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+1.  **Add the dependency**
 
-## Getting started
+    Add this to your project's `pubspec.yaml`:
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+    ```yaml
+    dependencies:
+      flutter:
+        sdk: flutter
+      
+      fake_store_api_client:
+        git:
+          url: https://github.com/jorgemvv01/fake_store_api_client
+          ref: main
+    ```
 
-## Usage
+2.  **Install the package**
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+    Run the following command in your terminal:
+    ```bash
+    flutter pub get
+    ```
+
+---
+
+## Basic usage
+
+Import the package and instantiate the client.
 
 ```dart
-const like = 'sample';
-```
+import 'package:fake_store_api_client/fake_store_api_client.dart';
 
-## Additional information
+void main() {
+  // Create an instance of the client
+  final apiClient = FakeStoreApiClient();
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+  // You can now access the API methods
+  final products = await apiClient.products.getProducts();
+}
