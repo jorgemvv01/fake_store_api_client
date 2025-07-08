@@ -1,6 +1,6 @@
 # Fake store API client
 
-A package for the Fake Store API.
+A Dart package for the Fake Store API.
 
 ---
 
@@ -46,3 +46,90 @@ void main() {
   // You can now access the API methods
   final products = await apiClient.products.getProducts();
 }
+```
+
+All API methods return a **Future<Either<Failure, T>>**, where T is the success type. Use the .fold() method to safely handle both success and failure cases.
+
+## Available endpoints
+
+### Products
+
+Access all product-related operations via **apiClient.products.**
+
+#### Get all Products
+fetches a list of all products.
+``` dart
+final result = await apiClient.products.getProducts();
+result.fold(
+    (failure) => print('Error: ${failure.message}'),
+    (products) => print('Success! Found ${products.length} products.'),
+);
+```
+
+#### Get a single Product
+Fetches a single product by its ID.
+``` dart
+final result = await apiClient.products.getProduct(1);
+result.fold(
+    (failure) => print('Error: ${failure.message}'),
+    (product) => print('Success! Found product: ${product.title}'),
+);
+```
+
+#### Create a Product
+Creates a new product.
+``` dart
+const request = ProductRequest(
+    title: 'New test product',
+    price: 19.99,
+    description: 'A description for the new product.',
+    image: 'https://i.pravatar.cc',
+    category: 'electronics',
+);
+
+final result = await apiClient.products.createProduct(request);
+result.fold(
+    (failure) => print('Error: ${failure.message}'),
+    (newProduct) => print('Success! Created product with ID: ${newProduct.id}'),
+);
+```
+
+#### Update a Product
+Updates an existing product by its ID.
+``` dart
+const request = ProductRequest(
+    title: 'Updated test product',
+    price: 19.99,
+    description: 'A description for the new product.',
+    image: 'https://i.pravatar.cc',
+    category: 'electronics',
+);
+final result = await apiClient.products.updateProduct(1, request);
+result.fold(
+    (failure) => print('Error: ${failure.message}'),
+    (updatedProduct) => print('Success! Updated product: ${updatedProduct.title}'),
+);
+```
+
+#### Delete a Product
+Deletes a product by its ID.
+``` dart
+final result = await apiClient.products.deleteProduct(1);
+result.fold(
+    (failure) => print('Error: ${failure.message}'),
+    (deletedProduct) => print('Success! Deleted product with ID: ${deletedProduct.id}'),
+);
+```
+
+
+### Carts
+
+Access all cart-related operations via **apiClient.carts.**
+
+The available methods are similar to those for Products (e.g., getCart(id), getCarts(), createCart(...), etc.).
+
+### Users
+
+Access all user-related operations via **apiClient.users.**
+
+The available methods are similar to those for Products (e.g., getUser(id), getUsers(), createUser(...), etc.).
