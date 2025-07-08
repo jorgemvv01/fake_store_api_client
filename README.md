@@ -44,7 +44,7 @@ void main() {
   final apiClient = FakeStoreApiClient();
 
   // You can now access the API methods
-  final products = await apiClient.products.getProducts();
+  final productsResult = await apiClient.products.getProducts();
 }
 ```
 
