@@ -5,4 +5,5 @@ class Api {
   static const String products = 'products';
   static const String users = 'users';
   static const String carts = 'carts';
+  static const String authLogin = 'auth/login';
 }

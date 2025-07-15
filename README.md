@@ -133,3 +133,22 @@ The available methods are similar to those for Products (e.g., getCart(id), getC
 Access all user-related operations via **apiClient.users.**
 
 The available methods are similar to those for Products (e.g., getUser(id), getUsers(), createUser(...), etc.).
+
+
+### Auth
+
+Access all authentication-related operations via **`apiClient.auth`**.
+
+#### Login
+Logs in a user and returns a token on success.
+```dart
+const request = LoginRequest(
+  username: 'johnd', // Replace with a valid API username
+  password: 'm38rmF$', // Replace with the valid password
+);
+
+final result = await apiClient.auth.login(request);
+result.fold(
+    (failure) => print('Error: ${failure.message}'),
+    (token) => print('Success! Logged in. Token: $token'),
+);
