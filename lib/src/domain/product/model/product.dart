@@ -24,7 +24,7 @@ class Product extends Equatable {
     title: json["title"],
     price: json["price"]?.toDouble(),
     description: json["description"],
-    category: json["description"],
+    category: json["category"],
     image: json["image"],
     rating: json["rating"] != null
         ? Rating.fromJson(json["rating"])
