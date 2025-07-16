@@ -21,7 +21,13 @@ class AuthRepositoryImpl implements AuthRepository {
         return Right(response.data["token"]);
       }
       return Left(ServerFailure('Server error: ${response.statusCode}'));
-    } on DioException {
+    } on DioException catch(e){
+      if (e.response != null) {
+        if (e.response?.statusCode == 401) {
+          return const Left(ServerFailure('Username or password is incorrect'));
+        }
+        return Left(ServerFailure('Server error: ${e.response?.statusCode}'));
+      }
       return const Left(NetworkFailure());
     } catch (e) {
       return Left(ServerFailure('An error has occurred: $e'));
