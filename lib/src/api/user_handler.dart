@@ -27,9 +27,9 @@ class UserApiHandler {
   /// Takes a [UserRequest] object with the new user's data.
   ///
   /// Returns a [Future] that completes with an [Either]:
-  /// - A [Right] containing the created [User] (with its new ID) on success.
+  /// - A [Right] contains an `int`, which represents the ID of the created user.
   /// - A [Left] containing a [Failure] on error.
-  Future<Either<Failure, User>> createUser(UserRequest request) {
+  Future<Either<Failure, int>> createUser(UserRequest request) {
     return _repository.createUser(request);
   }
 

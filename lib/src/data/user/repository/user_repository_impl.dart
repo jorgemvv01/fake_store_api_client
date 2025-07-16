@@ -27,7 +27,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Future<Either<Failure, User>> createUser(UserRequest request) async {
+  Future<Either<Failure, int>> createUser(UserRequest request) async {
     try {
       final response = await dio.post(
         '/${Api.users}',
@@ -35,7 +35,7 @@ class UserRepositoryImpl implements UserRepository {
         options: Options(contentType: 'application/json'),
       );
       if (response.statusCode == 200) {
-        return Right(User.fromJson(response.data));
+        return Right(response.data["id"]);
       }
       return Left(ServerFailure('Server error: ${response.statusCode}'));
     } on DioException {
