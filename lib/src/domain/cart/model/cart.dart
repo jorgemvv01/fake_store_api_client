@@ -20,6 +20,13 @@ class Cart extends Equatable {
         products: List<Product>.from(json["products"].map((x) => Product.fromJson(x))),
     );
 
+    factory Cart.fromUpdateJson(Map<String, dynamic> json) => Cart(
+        id: json["id"],
+        userId: json["userId"],
+        date: DateTime.parse(json["date"]),
+        products: const[]
+    );
+
     Map<String, dynamic> toJson() => {
         "id": id,
         "userId": userId,

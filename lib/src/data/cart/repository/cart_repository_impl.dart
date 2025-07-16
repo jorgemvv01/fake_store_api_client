@@ -71,7 +71,7 @@ class CartRepositoryImpl implements CartRepository {
       );
       if (response.statusCode == 200) {
         return response.data['id'] == cartId
-            ? Right(Cart.fromJson(response.data))
+            ? Right(Cart.fromUpdateJson(response.data))
             : const Left(ServerFailure('Cart ID mismatch'));
       }
       return Left(ServerFailure('Server error: ${response.statusCode}'));
