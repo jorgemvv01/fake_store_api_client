@@ -17,11 +17,11 @@ class AuthRepositoryImpl implements AuthRepository {
         data: request.toJson(),
         options: Options(contentType: 'application/json'),
       );
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         return Right(response.data["token"]);
       }
       return Left(ServerFailure('Server error: ${response.statusCode}'));
-    } on DioException catch(e){
+    } on DioException catch (e) {
       if (e.response != null) {
         if (e.response?.statusCode == 401) {
           return const Left(ServerFailure('Username or password is incorrect'));

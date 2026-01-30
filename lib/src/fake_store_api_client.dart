@@ -3,6 +3,7 @@ import 'package:fake_store_api_client/src/api/auth_handler.dart';
 import 'package:fake_store_api_client/src/api/cart_handler.dart';
 import 'package:fake_store_api_client/src/api/product_handler.dart';
 import 'package:fake_store_api_client/src/api/user_handler.dart';
+import 'package:fake_store_api_client/src/core/api.dart';
 
 class FakeStoreApiClient {
   late final Dio _dio;
@@ -26,7 +27,7 @@ class FakeStoreApiClient {
   FakeStoreApiClient() {
     _dio = Dio(
       BaseOptions(
-        baseUrl: 'https://fakestoreapi.com',
+        baseUrl: Api.baseUrl,
         connectTimeout: const Duration(seconds: 5),
       ),
     );
